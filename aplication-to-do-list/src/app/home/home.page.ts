@@ -8,11 +8,11 @@ import {
 } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { Task } from '../../models/task.model';
-import { Category } from '../../models/category.model';
-import { TaskService } from '../../services/task.service';
-import { CategoryService } from '../../services/category.service';
-import { FirebaseConfigService } from '../../services/firebase-config.service';
+import { Task } from '../models/task.model';
+import { Category } from '../models/category.model';
+import { TaskService } from '../services/task.service';
+import { CategoryService } from '../services/category.service';
+import { FirebaseConfigService } from '../services/firebase-config.service';
 
 @Component({
   selector: 'app-home',
