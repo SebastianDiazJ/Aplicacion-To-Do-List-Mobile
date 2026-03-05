@@ -1,5 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AlertController, ToastController } from '@ionic/angular';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { AlertController, IonicModule, ToastController } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Category } from '../../models/category.model';
@@ -7,7 +10,9 @@ import { CategoryService } from '../../services/category.service';
 import { TaskService } from '../../services/task.service';
 
 @Component({
+  standalone: true,
   selector: 'app-categories',
+  imports: [CommonModule, FormsModule, RouterModule, IonicModule],
   templateUrl: './categories.page.html',
   styleUrls: ['./categories.page.scss'],
 })

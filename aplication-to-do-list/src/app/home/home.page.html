@@ -23,7 +23,7 @@
   <ion-toolbar>
     <ion-segment
       [value]="selectedCategoryId || 'all'"
-      (ionChange)="filterByCategory($event.detail.value === 'all' ? null : $event.detail.value!)"
+      (ionChange)="filterByCategory($event.detail.value === 'all' ? null : $any($event.detail.value))"
       scrollable
     >
       <ion-segment-button value="all">

@@ -11,7 +11,7 @@ import { CategoriesPage } from './categories.page';
     FormsModule,
     IonicModule,
     RouterModule.forChild([{ path: '', component: CategoriesPage }]),
+    CategoriesPage,
   ],
-  declarations: [CategoriesPage],
 })
 export class CategoriesPageModule {}

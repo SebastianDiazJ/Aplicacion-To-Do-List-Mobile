@@ -1,10 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import {
   AlertController,
   IonItemSliding,
   ToastController,
   IonContent,
+  IonicModule,
 } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -15,7 +19,9 @@ import { CategoryService } from '../services/category.service';
 import { FirebaseConfigService } from '../services/firebase-config.service';
 
 @Component({
+  standalone: true,
   selector: 'app-home',
+  imports: [CommonModule, FormsModule, RouterModule, IonicModule],
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })

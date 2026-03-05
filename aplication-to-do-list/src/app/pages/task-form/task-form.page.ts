@@ -1,13 +1,18 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { Task } from '../../models/task.model';
 import { Category } from '../../models/category.model';
 import { TaskService } from '../../services/task.service';
 import { CategoryService } from '../../services/category.service';
 
 @Component({
+  standalone: true,
   selector: 'app-task-form',
+  imports: [CommonModule, FormsModule, RouterModule, IonicModule],
   templateUrl: './task-form.page.html',
   styleUrls: ['./task-form.page.scss'],
 })

@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { IonicModule, Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 
 @Component({
+  standalone: true,
   selector: 'app-root',
+  imports: [CommonModule, RouterModule, IonicModule],
   template: `
     <ion-app>
       <ion-menu contentId="main-content" type="overlay">

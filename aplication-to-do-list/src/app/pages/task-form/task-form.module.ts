@@ -11,7 +11,7 @@ import { TaskFormPage } from './task-form.page';
     FormsModule,
     IonicModule,
     RouterModule.forChild([{ path: '', component: TaskFormPage }]),
+    TaskFormPage,
   ],
-  declarations: [TaskFormPage],
 })
 export class TaskFormPageModule {}
