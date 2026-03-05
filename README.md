@@ -145,21 +145,28 @@ integridad referencial manual: al eliminar una categoría, las tareas
 asociadas quedan sin categoría en lugar de eliminarse. La integración de
 Firebase Remote Config con Angular requirió un enfoque reactivo usando
 BehaviorSubjects para que los feature flags se actualicen sin bloquear la
-carga inicial.
+carga inicial me dio un poco duro compilar el project porque hace tiempo no manejaba
+este framework pero de resto todo normal nada fuera de lo comun .
 
 ### ¿Qué técnicas de optimización aplicaste?
 
 Lazy Loading para reducir el tiempo de carga inicial. trackBy en todas las
 directivas *ngFor para optimizar el rendering del DOM. Arquitectura reactiva
 con Observables/BehaviorSubjects preparada para OnPush. Patrón takeUntil
-para prevenir memory leaks. Escrituras batch al storage para minimizar I/O.
+para prevenir memory leaks. Escrituras batch al storage para minimizar I/O,
+en pocas palabras, Se cargan las pantallas solo cuando el usuario las necesita para que la aplicación abra más rápido.
+Se optimizo la forma en que se muestran las listas para que la app sea más rápida.
+La aplicación está organizada para que los datos se actualicen automáticamente cuando cambian.
+Se evita que la app consuma memoria innecesariamente.
+También se agrupan las guardadas de datos para que el sistema trabaje menos y sea más eficiente
 
 ### ¿Cómo aseguraste la calidad y mantenibilidad?
 
 Separación de responsabilidades con servicios dedicados por dominio. Modelos
-tipados con interfaces TypeScript. Componentes enfocados en presentación.
-Lazy-loaded modules siguiendo las convenciones de Angular. Código
-documentado con nombres descriptivos y estructura consistente.
+tipados con interfaces TypeScript me encanta trabajar con frameworks asi ya que me permite hacer todo mas rapido.
+asegure la mantenibilidad con componentes enfocados en presentación.
+Lazy loaded modules siguiendo las convenciones de Angular.
+
 
 ## 👤 Autor
 
