@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Categorías</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addCategory()">
+        <ion-icon name="add-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="empty-state" *ngIf="categories.length === 0">
+    <ion-icon name="pricetags-outline" color="medium"></ion-icon>
+    <h2>No hay categorías</h2>
+    <p>Crea categorías para organizar tus tareas</p>
+  </div>
+
+  <ion-list *ngIf="categories.length > 0">
+    <ion-item-sliding
+      *ngFor="let cat of categories; trackBy: trackByCategoryId"
+      #sliding
+    >
+      <ion-item>
+        <ion-icon
+          [name]="cat.icon"
+          [style.color]="cat.color"
+          slot="start"
+          class="category-icon"
+          (click)="changeIcon(cat)"
+        ></ion-icon>
+
+        <ion-label (click)="editCategory(cat)">
+          <h2>{{ cat.name }}</h2>
+        </ion-label>
+
+        <div
+          class="color-dot"
+          [style.background]="cat.color"
+          slot="end"
+          (click)="changeColor(cat)"
+        ></div>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="editCategory(cat); sliding.close()">
+          <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="deleteCategory(cat); sliding.close()">
+          <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

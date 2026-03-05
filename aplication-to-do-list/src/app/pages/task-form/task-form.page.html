@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ pageTitle }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Título *</ion-label>
+      <ion-input
+        [(ngModel)]="task.title"
+        placeholder="¿Qué necesitas hacer?"
+        type="text"
+        [clearInput]="true"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Descripción</ion-label>
+      <ion-textarea
+        [(ngModel)]="task.description"
+        placeholder="Agrega detalles (opcional)"
+        rows="3"
+        autoGrow
+      ></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Categoría</ion-label>
+      <ion-select
+        [(ngModel)]="task.categoryId"
+        placeholder="Selecciona una categoría"
+        interface="action-sheet"
+      >
+        <ion-select-option [value]="undefined">Sin categoría</ion-select-option>
+        <ion-select-option
+          *ngFor="let cat of categories"
+          [value]="cat.id"
+        >
+          {{ cat.name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <div class="ion-padding-top">
+    <ion-button expand="block" (click)="saveTask()" color="primary">
+      <ion-icon name="checkmark-outline" slot="start"></ion-icon>
+      {{ isEditing ? 'Actualizar Tarea' : 'Crear Tarea' }}
+    </ion-button>
+  </div>
+</ion-content>

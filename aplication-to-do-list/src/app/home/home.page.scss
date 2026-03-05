@@ -1,0 +1,44 @@
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  text-align: center;
+  padding: 2rem;
+
+  ion-icon {
+    font-size: 80px;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    color: var(--ion-color-medium);
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: var(--ion-color-medium-shade);
+    font-size: 0.95rem;
+  }
+}
+
+.completed-task {
+  opacity: 0.6;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
+
+.category-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  color: white;
+  margin-top: 4px;
+}

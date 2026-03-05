@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Mis Tareas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleShowCompleted()">
+        <ion-icon
+          [name]="showCompleted ? 'eye-outline' : 'eye-off-outline'"
+          slot="icon-only"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <!-- Banner de Remote Config -->
+  <ion-toolbar color="warning" *ngIf="bannerMessage">
+    <ion-title size="small">{{ bannerMessage }}</ion-title>
+  </ion-toolbar>
+
+  <!-- Filtro por categorías -->
+  <ion-toolbar>
+    <ion-segment
+      [value]="selectedCategoryId || 'all'"
+      (ionChange)="filterByCategory($event.detail.value === 'all' ? null : $event.detail.value!)"
+      scrollable
+    >
+      <ion-segment-button value="all">
+        <ion-label>Todas</ion-label>
+      </ion-segment-button>
+      <ion-segment-button
+        *ngFor="let cat of categories; trackBy: trackByCategoryId"
+        [value]="cat.id"
+      >
+        <ion-icon [name]="cat.icon" [style.color]="cat.color"></ion-icon>
+        <ion-label>{{ cat.name }}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Estado vacío -->
+  <div class="empty-state" *ngIf="filteredTasks.length === 0">
+    <ion-icon name="clipboard-outline" color="medium"></ion-icon>
+    <h2>No hay tareas</h2>
+    <p>Toca el botón + para agregar una nueva tarea</p>
+  </div>
+
+  <!-- Lista de tareas con Virtual Scroll optimizado -->
+  <ion-list *ngIf="filteredTasks.length > 0">
+    <ion-item-sliding
+      *ngFor="let task of filteredTasks; trackBy: trackByTaskId"
+      #sliding
+    >
+      <ion-item [class.completed-task]="task.completed">
+        <ion-checkbox
+          slot="start"
+          [checked]="task.completed"
+          (ionChange)="toggleComplete(task)"
+          [color]="getCategoryById(task.categoryId)?.color ? 'primary' : 'primary'"
+        ></ion-checkbox>
+
+        <ion-label (click)="goToEditTask(task)">
+          <h2 [class.line-through]="task.completed">{{ task.title }}</h2>
+          <p *ngIf="task.description">{{ task.description }}</p>
+          <ion-badge
+            *ngIf="getCategoryById(task.categoryId) as cat"
+            [style.background]="cat.color"
+            class="category-badge"
+          >
+            <ion-icon [name]="cat.icon" size="small"></ion-icon>
+            {{ cat.name }}
+          </ion-badge>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="deleteTask(task, sliding)">
+          <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <!-- FAB para agregar tarea -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="goToAddTask()" color="primary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
