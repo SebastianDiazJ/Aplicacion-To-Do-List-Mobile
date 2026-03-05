@@ -73,6 +73,16 @@
             <ion-icon [name]="cat.icon" size="small"></ion-icon>
             {{ cat.name }}
           </ion-badge>
+          <ion-badge
+            *ngIf="task.priority"
+            [color]="task.priority === 'high' ? 'danger' : task.priority === 'medium' ? 'warning' : 'success'"
+            class="priority-badge"
+          >
+            {{ task.priority === 'high' ? 'Alta' : task.priority === 'medium' ? 'Media' : 'Baja' }}
+          </ion-badge>
+          <p *ngIf="task.dueDate && enableDueDates" class="due-date">
+            📅 {{ task.dueDate | date: 'dd/MM/yyyy' }}
+          </p>
         </ion-label>
       </ion-item>
 

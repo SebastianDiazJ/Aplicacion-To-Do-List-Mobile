@@ -63,6 +63,9 @@ export class HomePage implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((flags) => {
         this.enableDueDates = flags['enable_due_dates'] ?? false;
+
+        const enableDark = flags['enable_dark_mode'] ?? false;
+        document.body.classList.toggle('dark', enableDark);
       });
 
     this.firebaseConfig.banner$

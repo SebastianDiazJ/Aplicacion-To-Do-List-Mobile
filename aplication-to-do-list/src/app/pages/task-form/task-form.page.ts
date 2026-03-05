@@ -8,6 +8,7 @@ import { Task } from '../../models/task.model';
 import { Category } from '../../models/category.model';
 import { TaskService } from '../../services/task.service';
 import { CategoryService } from '../../services/category.service';
+import { FirebaseConfigService } from '../../services/firebase-config.service';
 
 @Component({
   standalone: true,
@@ -27,10 +28,14 @@ export class TaskFormPage implements OnInit {
   categories: Category[] = [];
   isEditing = false;
   pageTitle = 'Nueva Tarea';
+  enableTaskPriority = false;
+  enableDueDates = false;
+  today = new Date().toISOString();
 
   constructor(
     private taskService: TaskService,
     private categoryService: CategoryService,
+    private firebaseConfig: FirebaseConfigService,
     private route: ActivatedRoute,
     private router: Router,
     private toastCtrl: ToastController
@@ -39,6 +44,11 @@ export class TaskFormPage implements OnInit {
   ngOnInit(): void {
     this.categoryService.categories$.subscribe((cats) => {
       this.categories = cats;
+    });
+
+    this.firebaseConfig.featureFlags$.subscribe((flags) => {
+      this.enableTaskPriority = flags['enable_task_priority'] ?? false;
+      this.enableDueDates = flags['enable_due_dates'] ?? false;
     });
 
     const taskId = this.route.snapshot.paramMap.get('id');
@@ -64,6 +74,8 @@ export class TaskFormPage implements OnInit {
         title: this.task.title,
         description: this.task.description,
         categoryId: this.task.categoryId,
+        priority: this.task.priority,
+        dueDate: this.task.dueDate,
       });
       this.showToast('Tarea actualizada', 'success');
     } else {
@@ -72,6 +84,8 @@ export class TaskFormPage implements OnInit {
         description: this.task.description,
         completed: false,
         categoryId: this.task.categoryId,
+        priority: this.task.priority,
+        dueDate: this.task.dueDate,
       });
       this.showToast('Tarea creada', 'success');
     }

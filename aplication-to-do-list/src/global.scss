@@ -35,3 +35,59 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+body.dark {
+  --ion-background-color: #1e1e1e;
+  --ion-background-color-rgb: 30, 30, 30;
+  --ion-text-color: #ffffff;
+  --ion-text-color-rgb: 255, 255, 255;
+  --ion-color-step-50: #2a2a2a;
+  --ion-color-step-100: #363636;
+  --ion-color-step-150: #424242;
+  --ion-color-step-200: #4e4e4e;
+  --ion-color-step-250: #5a5a5a;
+  --ion-color-step-300: #666666;
+  --ion-color-step-350: #727272;
+  --ion-color-step-400: #7e7e7e;
+  --ion-color-step-450: #8a8a8a;
+  --ion-color-step-500: #969696;
+  --ion-color-step-550: #a2a2a2;
+  --ion-color-step-600: #aeaeae;
+  --ion-color-step-650: #bababa;
+  --ion-color-step-700: #c6c6c6;
+  --ion-color-step-750: #d2d2d2;
+  --ion-color-step-800: #dedede;
+  --ion-color-step-850: #eaeaea;
+  --ion-color-step-900: #f6f6f6;
+  --ion-color-step-950: #ffffff;
+
+  --ion-item-background: #2a2a2a;
+  --ion-card-background: #2a2a2a;
+  --ion-toolbar-background: #1a1a1a;
+  body.dark ion-app,
+body.dark ion-content,
+body.dark ion-menu,
+body.dark ion-list,
+body.dark ion-item {
+  --background: #1e1e1e;
+  --ion-background-color: #1e1e1e;
+  --ion-item-background: #2a2a2a;
+  color: #ffffff;
+}
+
+body.dark ion-toolbar {
+  --background: #121212;
+  --color: #ffffff;
+}
+
+body.dark ion-segment,
+body.dark ion-segment-button {
+  --background: #1f1f1f;
+  --color: #ffffff;
+}
+
+body.dark ion-fab-button,
+body.dark ion-button {
+  --border-radius: 999px;
+}
+}

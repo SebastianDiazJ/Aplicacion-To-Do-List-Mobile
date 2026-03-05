@@ -45,6 +45,32 @@
         </ion-select-option>
       </ion-select>
     </ion-item>
+
+    <!-- Prioridad (controlado por Feature Flag) -->
+    <ion-item *ngIf="enableTaskPriority">
+      <ion-label position="stacked">Prioridad</ion-label>
+      <ion-select [(ngModel)]="task.priority" placeholder="Selecciona prioridad" interface="action-sheet">
+        <ion-select-option value="low">🟢 Baja</ion-select-option>
+        <ion-select-option value="medium">🟡 Media</ion-select-option>
+        <ion-select-option value="high">🔴 Alta</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Fecha de vencimiento (controlado por Feature Flag) -->
+    <ion-item *ngIf="enableDueDates">
+      <ion-label position="stacked">Fecha de vencimiento</ion-label>
+      <ion-datetime-button datetime="dueDate"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime
+            id="dueDate"
+            [(ngModel)]="task.dueDate"
+            presentation="date"
+            [min]="today"
+          ></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
   </ion-list>
 
   <div class="ion-padding-top">
