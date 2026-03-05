@@ -65,7 +65,11 @@ export class HomePage implements OnInit, OnDestroy {
         this.enableDueDates = flags['enable_due_dates'] ?? false;
       });
 
-    this.bannerMessage = this.firebaseConfig.getBannerMessage();
+    this.firebaseConfig.banner$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((msg) => {
+        this.bannerMessage = msg;
+      });
   }
 
   ngOnDestroy(): void {

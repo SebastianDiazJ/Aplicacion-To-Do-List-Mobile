@@ -10,7 +10,10 @@ import { TaskFormPage } from './task-form.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild([{ path: '', component: TaskFormPage }]),
+    RouterModule.forChild([
+      { path: '', component: TaskFormPage },
+      { path: ':id', component: TaskFormPage },
+    ]),
     TaskFormPage,
   ],
 })

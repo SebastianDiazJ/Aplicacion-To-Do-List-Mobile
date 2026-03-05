@@ -6,6 +6,8 @@ import { BehaviorSubject } from 'rxjs';
 export class FirebaseConfigService {
   private featureFlags = new BehaviorSubject<Record<string, boolean>>({});
   public featureFlags$ = this.featureFlags.asObservable();
+  private bannerSubject = new BehaviorSubject<string>('');
+  public banner$ = this.bannerSubject.asObservable();
 
   constructor(private remoteConfig: RemoteConfig) {
     this.initRemoteConfig();
@@ -14,7 +16,7 @@ export class FirebaseConfigService {
   private async initRemoteConfig(): Promise<void> {
     try {
       // Configurar intervalo mínimo de fetch (en desarrollo, usar 0)
-      this.remoteConfig.settings.minimumFetchIntervalMillis = 3600000; // 1 hora en prod
+      this.remoteConfig.settings.minimumFetchIntervalMillis = 1200; 
 
       // Valores por defecto
       this.remoteConfig.defaultConfig = {
@@ -43,19 +45,14 @@ export class FirebaseConfigService {
       enable_due_dates: getValue(this.remoteConfig, 'enable_due_dates').asBoolean(),
     };
     this.featureFlags.next(flags);
+
+    const banner = getValue(this.remoteConfig, 'app_banner_message').asString();
+    this.bannerSubject.next(banner);
   }
 
   isFeatureEnabled(featureName: string): boolean {
     const flags = this.featureFlags.value;
     return flags[featureName] ?? false;
-  }
-
-  getBannerMessage(): string {
-    try {
-      return getValue(this.remoteConfig, 'app_banner_message').asString();
-    } catch {
-      return '';
-    }
   }
 
   async refreshConfig(): Promise<void> {

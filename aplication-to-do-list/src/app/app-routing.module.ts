@@ -4,16 +4,21 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
   },
   {
     path: 'categories',
-    loadChildren: () => import('./pages/categories/categories.module').then(m => m.CategoriesPageModule)
+    loadChildren: () => import('./pages/categories/categories.module').then(m => m.CategoriesPageModule),
   },
   {
     path: 'task-form',
-    loadChildren: () => import('./pages/task-form/task-form.module').then(m => m.TaskFormPageModule)
-  }
+    loadChildren: () => import('./pages/task-form/task-form.module').then(m => m.TaskFormPageModule),
+  },
 ];
 
 @NgModule({
