@@ -1,0 +1,27 @@
+notepad .gitignore
+```
+
+Y pon esto:
+```
+# Dependencias
+node_modules/
+
+# Android/iOS builds
+android/
+ios/
+platforms/
+plugins/
+
+# Build output
+www/
+dist/
+.sourcemaps/
+
+# APK e IPA
+*.apk
+*.ipa
+
+# IDE
+.idea/
+.vscode/
+*.swp
